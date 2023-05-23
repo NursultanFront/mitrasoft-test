@@ -12,11 +12,11 @@ export default function Header() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link as={Link} to="/" href="features">
-              Features
+            <Nav.Link as={Link} to="/about" href="features">
+              About
             </Nav.Link>
-            <Nav.Link as={Link} to="/about" href="pricing">
-              Pricing
+            <Nav.Link as={Link} to="/user" href="pricing">
+              User
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
