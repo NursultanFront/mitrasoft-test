@@ -1,7 +1,7 @@
 import { BasicRest } from "../basic-rest";
 
 import type { AxiosInstance } from "axios";
-import type { User } from "./type";
+import type { Post, Comment, User } from "./type";
 
 export class UserRest extends BasicRest {
   constructor(endpoint: AxiosInstance) {
@@ -9,6 +9,18 @@ export class UserRest extends BasicRest {
   }
 
   public getPosts() {
-    return this.getRequest<User>(`/posts`);
+    return this.getRequest<Post[]>(`/posts`);
+  }
+
+  public getComments(id: number) {
+    return this.getRequest<Comment[]>(`/comments?postId=${id}`);
+  }
+
+  public getUser(id: number) {
+    return this.getRequest<User>(`/users/${id}`);
+  }
+
+  public getUserPost(id: number) {
+    return this.getRequest<Post>(`/posts?userId=${id}`);
   }
 }
