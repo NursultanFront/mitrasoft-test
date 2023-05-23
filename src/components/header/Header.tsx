@@ -8,7 +8,9 @@ export default function Header() {
   return (
     <>
       <Navbar collapseOnSelect expand={false} bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Main</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">
+          Main
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
