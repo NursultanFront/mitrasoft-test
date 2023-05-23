@@ -8,17 +8,18 @@ export default function Header() {
   return (
     <>
       <Navbar collapseOnSelect expand={false} bg="dark" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Brand as={Link} to="/">
           Main
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link as={Link} to="/about" href="features">
-              About
+            <Nav.Link as={Link} to="/" href="features">
+              Список постов
             </Nav.Link>
-            <Nav.Link as={Link} to="/user" href="pricing">
-              User
+            <Nav.Link as={Link} to="/about" href="pricing">
+              Обо мне
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
