@@ -36,12 +36,13 @@ function* fetchUserById(action) {
   yield put(setUserLoading(true));
   try {
     const user: User = yield api.user.getUser(action.id);
-    yield put(setUser(user));
     const res: Post[] = yield api.user.getUserPosts(action.id);
+    yield put(setUser(user));
     yield put(setPosts(res));
     yield delay(500);
   } catch (error) {
     yield put(setUserError(true));
+    yield put(setPostError(true));
   } finally {
     yield put(setPostDownload(false));
     yield put(setUserLoading(false));
