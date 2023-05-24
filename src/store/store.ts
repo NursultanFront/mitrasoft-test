@@ -11,9 +11,9 @@ const sagaMiddleware = createSagaMiddleware();
 const store = configureStore({
   devTools: true,
   reducer: {
-    posts: post,
-    comments: comments,
-    user: user,
+    postSlice: post,
+    commentSlice: comments,
+    userSlice: user,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),

@@ -7,7 +7,7 @@ import PostContainer from "../components/post-container/PostContainer";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const posts = useAppSelector((state) => state.posts);
+  const posts = useAppSelector((state) => state.postSlice);
 
   useEffect(() => {
     dispatch({ type: GET_POSTS });

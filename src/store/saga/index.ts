@@ -1,15 +1,10 @@
 import { api } from "../../api";
 import { put, takeEvery, delay } from "redux-saga/effects";
 
-import {
-  GET_COMMENTS,
-  GET_POSTS,
-  GET_USER_BY_ID,
-  GET_USER_POSTS,
-} from "./action";
+import { GET_COMMENTS, GET_POSTS, GET_USER_BY_ID } from "./action";
 import { setPostDownload, setPostError, setPosts } from "../slice/post";
 import { setComments, setCommentsError } from "../slice/comments";
-import { setUser } from "../slice/user";
+import { setUser, setUserError, setUserLoading } from "../slice/user";
 import { Post, User, Comment } from "../../api/user-rest/type";
 
 function* fetchPosts() {
@@ -37,13 +32,19 @@ function* fetchCommentary(action) {
 }
 
 function* fetchUserById(action) {
+  yield put(setPostDownload(true));
+  yield put(setUserLoading(true));
   try {
     const user: User = yield api.user.getUser(action.id);
     yield put(setUser(user));
     const res: Post[] = yield api.user.getUserPosts(action.id);
     yield put(setPosts(res));
+    yield delay(500);
   } catch (error) {
-    console.log(error);
+    yield put(setUserError(error.message));
+  } finally {
+    yield put(setPostDownload(false));
+    yield put(setUserLoading(false));
   }
 }
 

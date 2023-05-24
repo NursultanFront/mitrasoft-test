@@ -25,7 +25,9 @@ const UserDetails = () => {
     dispatch({ type: GET_USER_BY_ID, id: id });
   }, [dispatch, id]);
 
-  const { posts, user } = useAppSelector((state) => state);
+  const { postSlice, userSlice } = useAppSelector((state) => state);
+
+  const { user } = userSlice;
 
   return (
     <Container>
@@ -40,7 +42,7 @@ const UserDetails = () => {
           </Col>
           <Col>
             <Card.Body>
-              {posts.loading ? (
+              {postSlice.loading ? (
                 <Spinner animation="border" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>
@@ -69,7 +71,7 @@ const UserDetails = () => {
         </Row>
         <Row>
           <Col>
-            <PostContainer posts={posts} isAvatar={false}></PostContainer>
+            <PostContainer posts={postSlice} isAvatar={false}></PostContainer>
           </Col>
         </Row>
       </Card>

@@ -22,9 +22,11 @@ const postsSlice = createSlice({
     },
     setPostDownload: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
+      state.error = false;
     },
     setPostError: (state, action: PayloadAction<boolean>) => {
       state.error = action.payload;
+      state.loading = false;
     },
   },
 });

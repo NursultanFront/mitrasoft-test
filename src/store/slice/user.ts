@@ -1,15 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../api/user-rest/type";
 
+interface UserState {
+  user: User;
+  loading: boolean;
+  error: string;
+}
+
+const initialState: UserState = {
+  user: {} as User,
+  loading: false,
+  error: "",
+};
+
 const user = createSlice({
-  name: "posts",
-  initialState: {} as User,
+  name: "user",
+  initialState,
   reducers: {
-    setUser: (state, action) => {
-      state = action.payload;
-      return state;
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload;
+    },
+    setUserLoading: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
+      state.error = "";
+    },
+    setUserError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = false;
     },
   },
 });
-export const { setUser } = user.actions;
+
+export const { setUser, setUserError, setUserLoading } = user.actions;
 export default user.reducer;

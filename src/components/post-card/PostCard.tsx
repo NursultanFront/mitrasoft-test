@@ -17,7 +17,7 @@ const PostCard = ({ post, isAvatar }: Props) => {
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { comments, error } = useAppSelector((state) => state.comments);
+  const { comments, error } = useAppSelector((state) => state.commentSlice);
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ const PostCard = ({ post, isAvatar }: Props) => {
     dispatch({ type: GET_COMMENTS, id: id });
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 500);
   };
 
   const loadComments = () => {
