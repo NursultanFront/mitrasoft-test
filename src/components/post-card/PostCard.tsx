@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import { GET_COMMENTS } from "../../store/saga/action";
 import { Comment, Post } from "../../api/user-rest/type";
 import { useAppDispatch } from "../../hooks/redux";
@@ -42,7 +44,10 @@ const PostCard = ({ post, comments }: Props) => {
         <Card.Body>
           <Row>
             <Col md={2}>
-              <Card.Img src={UserDefault} alt="Author Avatar" />
+              <Link to={`user/${post.userId}`}>
+                {" "}
+                <Card.Img src={UserDefault} alt="Author Avatar" />
+              </Link>
             </Col>
 
             <Col md={10}>

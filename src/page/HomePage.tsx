@@ -7,7 +7,6 @@ import { Alert, Container, Spinner } from "react-bootstrap";
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const { posts, comments } = useAppSelector((state) => state);
-  console.log(comments);
 
   useEffect(() => {
     dispatch({ type: GET_POSTS });

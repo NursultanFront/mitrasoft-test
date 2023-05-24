@@ -38,15 +38,8 @@ function* fetchCommentary(action) {
 
 function* fetchUserById(action) {
   try {
-    const res: User = yield api.user.getUser(action.id);
-    yield put(setUser(res));
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-function* fetchPostById(action) {
-  try {
+    const user: User = yield api.user.getUser(action.id);
+    yield put(setUser(user));
     const res: Post[] = yield api.user.getUserPosts(action.id);
     yield put(setPosts(res));
   } catch (error) {
@@ -58,7 +51,6 @@ function* watchFunc() {
   yield takeEvery(GET_POSTS, fetchPosts);
   yield takeEvery(GET_COMMENTS, fetchCommentary);
   yield takeEvery(GET_USER_BY_ID, fetchUserById);
-  yield takeEvery(GET_USER_POSTS, fetchPostById);
 }
 
 export function* rootSaga() {
