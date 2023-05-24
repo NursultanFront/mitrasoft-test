@@ -5,6 +5,7 @@ const comments = createSlice({
   initialState: [],
   reducers: {
     setComments: (state, action) => {
+      console.log("slice");
       state = action.payload;
       return state;
     },

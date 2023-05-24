@@ -20,7 +20,7 @@ export class UserRest extends BasicRest {
     return this.getRequest<User>(`/users/${id}`);
   }
 
-  public getUserPost(id: number) {
-    return this.getRequest<Post>(`/posts?userId=${id}`);
+  public getUserPosts(id: number) {
+    return this.getRequest<Post[]>(`/posts?userId=${id}`);
   }
 }
