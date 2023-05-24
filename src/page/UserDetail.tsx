@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Card,
@@ -20,6 +20,7 @@ import UserContainer from "../components/user-container/UserContainer";
 
 const UserDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,6 +33,14 @@ const UserDetails = () => {
 
   return (
     <Container>
+      <Button
+        variant="primary"
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Назад
+      </Button>
       <Card className="user-details-card">
         <Row>
           <Col md={3}>
