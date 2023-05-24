@@ -3,12 +3,12 @@ import { Comment } from "../../api/user-rest/type";
 
 export interface CommentsState {
   comments: Comment[];
-  error: string;
+  error: boolean;
 }
 
 const initialState: CommentsState = {
   comments: [],
-  error: "",
+  error: false,
 };
 
 const commentsSlice = createSlice({
@@ -18,7 +18,7 @@ const commentsSlice = createSlice({
     setComments: (state, action: PayloadAction<Comment[]>) => {
       state.comments = state.comments.concat(action.payload);
     },
-    setCommentsError: (state, action: PayloadAction<string>) => {
+    setCommentsError: (state, action: PayloadAction<boolean>) => {
       state.error = action.payload;
     },
   },

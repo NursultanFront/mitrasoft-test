@@ -4,13 +4,13 @@ import { User } from "../../api/user-rest/type";
 interface UserState {
   user: User;
   loading: boolean;
-  error: string;
+  error: boolean;
 }
 
 const initialState: UserState = {
   user: {} as User,
   loading: false,
-  error: "",
+  error: false,
 };
 
 const user = createSlice({
@@ -22,9 +22,9 @@ const user = createSlice({
     },
     setUserLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
-      state.error = "";
+      state.error = false;
     },
-    setUserError: (state, action: PayloadAction<string>) => {
+    setUserError: (state, action: PayloadAction<boolean>) => {
       state.error = action.payload;
       state.loading = false;
     },

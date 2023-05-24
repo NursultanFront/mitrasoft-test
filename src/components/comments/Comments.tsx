@@ -5,7 +5,7 @@ import { useAppSelector } from "../../hooks/redux";
 type Props = {
   children: React.ReactNode;
   loading: boolean;
-  error: string;
+  error: boolean;
 };
 
 const Comments = ({ children, loading, error }: Props) => {
@@ -19,8 +19,10 @@ const Comments = ({ children, loading, error }: Props) => {
     );
   }
 
-  if (error.trim()) {
-    return <Alert variant="danger">{error}</Alert>;
+  if (error) {
+    return (
+      <Alert variant="danger">Произошла ошибка при загрузке данных.</Alert>
+    );
   }
 
   return <>{children}</>;
