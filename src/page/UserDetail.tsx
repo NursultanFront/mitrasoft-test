@@ -6,7 +6,7 @@ import UserAvatar from "../assets/defaultUser.jpg";
 import { GET_USER_BY_ID } from "../store/saga/action";
 import { useAppSelector } from "../hooks/redux";
 
-const UserDetailsPage = () => {
+const UserDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -20,9 +20,8 @@ const UserDetailsPage = () => {
     <Container>
       <Card className="user-details-card">
         <Row>
-          <Col md={4}>
+          <Col md={3}>
             <Card.Img
-              variant="top"
               src={UserAvatar}
               alt="Author Avatar"
               className="user-details-avatar"
@@ -62,4 +61,4 @@ const UserDetailsPage = () => {
   );
 };
 
-export default UserDetailsPage;
+export default UserDetails;
