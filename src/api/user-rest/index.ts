@@ -13,7 +13,7 @@ export class UserRest extends BasicRest {
   }
 
   public getComments(id: number) {
-    return this.getRequest<Comment[]>(`/comments?postId=${id}`);
+    return this.getRequest<Comment[]>(`/commens?postId=${id}`);
   }
 
   public getUser(id: number) {

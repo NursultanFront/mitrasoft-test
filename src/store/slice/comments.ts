@@ -1,15 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Comment } from "../../api/user-rest/type";
 
-const comments = createSlice({
+export interface CommentsState {
+  comments: Comment[];
+  error: string;
+}
+
+const initialState: CommentsState = {
+  comments: [],
+  error: "",
+};
+
+const commentsSlice = createSlice({
   name: "comments",
-  initialState: [],
+  initialState,
   reducers: {
-    setComments: (state, action) => {
-      console.log("slice");
-      state = action.payload;
-      return state;
+    setComments: (state, action: PayloadAction<Comment[]>) => {
+      state.comments = state.comments.concat(action.payload);
+    },
+    setCommentsError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
     },
   },
 });
-export const { setComments } = comments.actions;
-export default comments.reducer;
+
+export const { setComments, setCommentsError } = commentsSlice.actions;
+export default commentsSlice.reducer;

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Card, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
-    <>
+    <header>
       <Navbar collapseOnSelect expand={false} bg="dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Brand as={Link} to="/">
@@ -24,6 +24,6 @@ export default function Header() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-    </>
+    </header>
   );
 }
