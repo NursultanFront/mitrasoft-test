@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post } from "../../api/user-rest/type";
 
-interface PostsState {
+export interface PostsState {
   post: Post[];
   loading: boolean;
   error: boolean;

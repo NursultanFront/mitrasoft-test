@@ -4,18 +4,20 @@ import { Link } from "react-router-dom";
 
 import { GET_COMMENTS } from "../../store/saga/action";
 import { Comment, Post } from "../../api/user-rest/type";
-import { useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 import UserDefault from "../../assets/defaultUser.jpg";
 import Comments from "../comments/Comments";
 type Props = {
   post: Post;
-  comments: Comment[];
+  isAvatar: boolean;
 };
 
-const PostCard = ({ post, comments }: Props) => {
+const PostCard = ({ post, isAvatar }: Props) => {
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const { comments, error } = useAppSelector((state) => state.comments);
 
   const dispatch = useAppDispatch();
 
@@ -43,21 +45,23 @@ const PostCard = ({ post, comments }: Props) => {
       <Card>
         <Card.Body>
           <Row>
-            <Col md={2}>
-              <Link to={`user/${post.userId}`}>
-                {" "}
-                <Card.Img src={UserDefault} alt="Author Avatar" />
-              </Link>
-            </Col>
+            {isAvatar && (
+              <Col md={2}>
+                <Link to={`user/${post.userId}`}>
+                  {" "}
+                  <Card.Img src={UserDefault} alt="Author Avatar" />
+                </Link>
+              </Col>
+            )}
 
-            <Col md={10}>
+            <Col md={isAvatar ? 10 : 12}>
               <Card.Title>{post.title}</Card.Title>
               <Card.Text>{post.body}</Card.Text>
 
               <Card.Title>Comments</Card.Title>
               {showComments && (
                 <>
-                  <Comments loading={loading}>
+                  <Comments loading={loading} error={error}>
                     {postComments.map((comment) => (
                       <div key={comment.id}>
                         <strong>{comment.email}</strong>

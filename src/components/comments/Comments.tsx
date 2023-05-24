@@ -5,11 +5,10 @@ import { useAppSelector } from "../../hooks/redux";
 type Props = {
   children: React.ReactNode;
   loading: boolean;
+  error: string;
 };
 
-const Comments = ({ children, loading }: Props) => {
-  const { error } = useAppSelector((state) => state.comments);
-
+const Comments = ({ children, loading, error }: Props) => {
   if (loading) {
     return (
       <div className="d-flex align-items-center justify-content-center">

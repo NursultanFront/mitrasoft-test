@@ -1,10 +1,21 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Button, Spinner, Container, Row, Col } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  Spinner,
+  Container,
+  Row,
+  Col,
+  Alert,
+} from "react-bootstrap";
 import UserAvatar from "../assets/defaultUser.jpg";
 import { GET_USER_BY_ID } from "../store/saga/action";
 import { useAppSelector } from "../hooks/redux";
+import PostCard from "../components/post-card/PostCard";
+import { PostsState } from "../store/slice/post";
+import PostContainer from "../components/post-container/PostContainer";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -14,7 +25,7 @@ const UserDetails = () => {
     dispatch({ type: GET_USER_BY_ID, id: id });
   }, [dispatch, id]);
 
-  const { posts, comments, user } = useAppSelector((state) => state);
+  const { posts, user } = useAppSelector((state) => state);
 
   return (
     <Container>
@@ -54,6 +65,15 @@ const UserDetails = () => {
                 </>
               )}
             </Card.Body>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <PostContainer
+              error={posts.error}
+              loading={posts.loading}
+              post={posts.post}
+            ></PostContainer>
           </Col>
         </Row>
       </Card>
