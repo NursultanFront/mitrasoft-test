@@ -7,7 +7,7 @@ import PostContainer from "../components/post-container/PostContainer";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const { error, loading, post } = useAppSelector((state) => state.posts);
+  const posts = useAppSelector((state) => state.posts);
 
   useEffect(() => {
     dispatch({ type: GET_POSTS });
@@ -15,11 +15,7 @@ const HomePage = () => {
 
   return (
     <Container>
-      <PostContainer
-        error={error}
-        loading={loading}
-        post={post}
-      ></PostContainer>
+      <PostContainer isAvatar={true} posts={posts}></PostContainer>
     </Container>
   );
 };

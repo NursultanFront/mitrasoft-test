@@ -69,11 +69,7 @@ const UserDetails = () => {
         </Row>
         <Row>
           <Col>
-            <PostContainer
-              error={posts.error}
-              loading={posts.loading}
-              post={posts.post}
-            ></PostContainer>
+            <PostContainer posts={posts} isAvatar={false}></PostContainer>
           </Col>
         </Row>
       </Card>
