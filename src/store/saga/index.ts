@@ -16,7 +16,7 @@ function* fetchPosts() {
     yield delay(500);
     yield put(setPostDownload(false));
   } catch (error) {
-    yield put(setPostError(error));
+    yield put(setPostError(true));
   } finally {
     yield put(setPostDownload(false));
   }
@@ -27,7 +27,7 @@ function* fetchCommentary(action) {
     const res: Comment[] = yield api.user.getComments(action.id);
     yield put(setComments(res));
   } catch (error) {
-    yield put(setCommentsError(error.message));
+    yield put(setCommentsError(true));
   }
 }
 
@@ -41,7 +41,7 @@ function* fetchUserById(action) {
     yield put(setPosts(res));
     yield delay(500);
   } catch (error) {
-    yield put(setUserError(error.message));
+    yield put(setUserError(true));
   } finally {
     yield put(setPostDownload(false));
     yield put(setUserLoading(false));
