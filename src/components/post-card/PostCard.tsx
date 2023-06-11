@@ -3,7 +3,7 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { GET_COMMENTS } from "../../store/saga/action";
-import { Comment, Post } from "../../api/user-rest/type";
+import { Post } from "../../api/user-rest/type";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 import UserDefault from "../../assets/defaultUser.jpg";
@@ -17,19 +17,17 @@ const PostCard = ({ post, isAvatar }: Props) => {
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { comments, error } = useAppSelector((state) => state.commentSlice);
-
+  const { comments } = useAppSelector((state) => state.commentSlice);
   const dispatch = useAppDispatch();
 
   const postComments = comments.filter((comment) => comment.postId === post.id);
+
+  console.log(postComments);
 
   const getComments = (id: Post["id"]) => {
     setLoading(true);
     setShowComments(true);
     dispatch({ type: GET_COMMENTS, id: id });
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
   };
 
   const loadComments = () => {
@@ -61,14 +59,14 @@ const PostCard = ({ post, isAvatar }: Props) => {
               <Card.Title>Comments</Card.Title>
               {showComments && (
                 <>
-                  <Comments loading={loading} error={error}>
+                  {/* <Comments loading={loading} error={error}>
                     {postComments.map((comment) => (
                       <div key={comment.id}>
                         <strong>{comment.email}</strong>
                         <p>{comment.body}</p>
                       </div>
                     ))}
-                  </Comments>
+                  </Comments> */}
                   <Button
                     onClick={() => {
                       setShowComments(false);

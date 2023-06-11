@@ -1,6 +1,5 @@
 import React from "react";
 import { Alert, Spinner } from "react-bootstrap";
-import { useAppSelector } from "../../hooks/redux";
 
 type Props = {
   children: React.ReactNode;

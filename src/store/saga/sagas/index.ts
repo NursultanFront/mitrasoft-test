@@ -24,7 +24,9 @@ export function* fetchPosts() {
 export function* fetchCommentary(action) {
   try {
     const res: Comment[] = yield api.user.getComments(action.id);
-    yield put(setComments(res));
+    yield put(
+      setComments({ comments: res, loading: false, postId: action.id })
+    );
   } catch (error) {
     yield put(setCommentsError(true));
   }
